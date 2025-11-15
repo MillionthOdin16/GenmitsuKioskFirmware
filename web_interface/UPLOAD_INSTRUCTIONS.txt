@@ -1,0 +1,74 @@
+Web Interface Upload Instructions
+==================================
+
+FILES IN THIS DIRECTORY:
+  - index.html.gz   (Main web interface - 114KB)
+  - favicon.ico     (Browser icon - 1.2KB)
+
+METHOD 1: Upload via Web Interface (EASIEST)
+---------------------------------------------
+1. Connect to Genmitsu Kiosk WiFi
+   SSID: Genmitsu_Kiosk_C_V07 (or Genmitsu_Kiosk_V07)
+   
+2. Open browser and go to:
+   http://192.168.0.1/files
+   
+3. Click "Upload" or "Browse" button
+   
+4. Select "index.html.gz" from this directory
+   
+5. Wait for upload to complete
+   
+6. Optionally upload "favicon.ico"
+   
+7. Navigate to http://192.168.0.1
+   - Full web interface should now load!
+   - If not, hard refresh (Ctrl+F5 or Cmd+Shift+R)
+
+METHOD 2: Flash SPIFFS Directly (ADVANCED)
+-------------------------------------------
+Requirements: esptool.py, mkspiffs
+
+1. Install mkspiffs:
+   Download from: https://github.com/igrr/mkspiffs/releases
+   
+2. Create SPIFFS image (in this directory):
+   mkspiffs -c . -b 4096 -p 256 -s 196608 spiffs.bin
+   
+3. Flash to device:
+   esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 921600 \
+       write_flash 0x3D0000 spiffs.bin
+       
+4. Restart device (power cycle)
+
+5. Access http://192.168.0.1
+
+METHOD 3: Include in Custom Firmware Build
+-------------------------------------------
+1. Copy these files to:
+   Grbl_Esp32/Grbl_Esp32/data/
+   
+2. In PlatformIO, upload filesystem:
+   pio run -t uploadfs
+   
+3. Then upload firmware:
+   pio run -t upload
+
+TROUBLESHOOTING
+---------------
+Problem: Can't access 192.168.0.1
+Solution: Ensure you're connected to device WiFi, not your home WiFi
+
+Problem: Upload button not found
+Solution: The fallback interface may have limited features.
+         Try Method 2 (flash directly)
+
+Problem: Upload fails
+Solution: File might be too large or SPIFFS full.
+         Try Method 2 (flash directly)
+
+Problem: Interface loads but looks broken
+Solution: Clear browser cache and hard refresh (Ctrl+F5)
+
+For detailed guide and troubleshooting:
+../docs/WEB_INTERFACE_SETUP.md
