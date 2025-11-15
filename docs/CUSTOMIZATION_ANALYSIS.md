@@ -209,6 +209,7 @@ All standard Grbl_ESP32 features are intact:
 ### Genmitsu Kiosk Likely Changes
 
 Based on physical specifications of Genmitsu Kiosk 2.5W:
+- **Work Area**: 100mm x 100mm (verified product specification)
 
 ```cpp
 // Hypothetical Genmitsu configuration
@@ -222,22 +223,22 @@ Based on physical specifications of Genmitsu Kiosk 2.5W:
 
 // Laser instead of servo/pen
 #define SPINDLE_TYPE    SpindleType::PWM
-#define SPINDLE_OUTPUT_PIN  GPIO_NUM_??  // TBD
+#define SPINDLE_OUTPUT_PIN  GPIO_NUM_16  // Likely (from binary analysis)
 #define SPINDLE_ENABLE_PIN  GPIO_NUM_??  // TBD
 
-// Different work area size (Kiosk specific)
-#define DEFAULT_X_MAX_TRAVEL    ???  // Actual work area
-#define DEFAULT_Y_MAX_TRAVEL    ???
+// Work area size (Kiosk specific - VERIFIED)
+#define DEFAULT_X_MAX_TRAVEL    100.0  // mm - VERIFIED
+#define DEFAULT_Y_MAX_TRAVEL    100.0  // mm - VERIFIED
 
-// Potentially different steps/mm based on mechanics
-#define DEFAULT_X_STEPS_PER_MM  ???
-#define DEFAULT_Y_STEPS_PER_MM  ???
+// Steps/mm based on binary analysis
+#define DEFAULT_X_STEPS_PER_MM  100.0  // From binary
+#define DEFAULT_Y_STEPS_PER_MM  100.0  // From binary
 
-// Tuned for laser engraving (potentially slower, smoother)
-#define DEFAULT_X_MAX_RATE      ???
-#define DEFAULT_Y_MAX_RATE      ???
-#define DEFAULT_X_ACCELERATION  ???
-#define DEFAULT_Y_ACCELERATION  ???
+// Tuned for compact laser engraver
+#define DEFAULT_X_MAX_RATE      5000.0 // mm/min - from binary
+#define DEFAULT_Y_MAX_RATE      5000.0 // mm/min - from binary
+#define DEFAULT_X_ACCELERATION  50.0   // mm/sec^2 - typical
+#define DEFAULT_Y_ACCELERATION  50.0   // mm/sec^2 - typical
 ```
 
 ---
