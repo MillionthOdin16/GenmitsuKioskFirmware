@@ -1,0 +1,9 @@
+EXHAUSTIVE FIRMWARE ANALYSIS RESULTS
+================================================================================
+
+
+VERIFIED PIN ASSIGNMENTS:
+i2s_bck = 25
+i2s_ws = 26
+i2s_data = 27
+pwm_frequency = 5000
