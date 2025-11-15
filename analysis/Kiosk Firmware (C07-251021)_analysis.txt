@@ -1,0 +1,7 @@
+Analysis Report for Kiosk Firmware (C07-251021).bin
+======================================================================
+
+File size: 1,303,728 bytes
+MD5: 073206d72007eb0360e9c6330c7f0aab
+
+For detailed analysis, run this script again.
