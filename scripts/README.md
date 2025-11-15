@@ -91,7 +91,81 @@ python3 parse_partitions.py firmware/Kiosk\ Firmware\ \(C07-251021\).bin --extra
 
 ---
 
-### 4. run_full_analysis.py
+### 4. analyze_app_partition.py
+**Purpose**: Detailed analysis of ESP32 application partition
+
+**Features**:
+- Parses ESP32 application image header
+- Maps memory segments (IRAM, DRAM, Flash)
+- Identifies entry point
+- Estimates function count
+- Analyzes SPI configuration
+
+**Usage**:
+```bash
+python3 analyze_app_partition.py <app_partition.bin>
+
+# Example:
+python3 analyze_app_partition.py analysis/partitions/app0.bin
+```
+
+**Output**:
+- Memory segment mapping
+- Entry point address
+- Load addresses for Ghidra
+- Function count estimate
+
+---
+
+### 5. compare_with_grbl.py
+**Purpose**: Compare firmware with stock Grbl_ESP32
+
+**Features**:
+- Clones Grbl_ESP32 repository
+- Compares strings to identify customizations
+- Analyzes source code structure
+- Determines what's stock vs custom
+
+**Usage**:
+```bash
+python3 compare_with_grbl.py <firmware.bin>
+
+# Example:
+python3 compare_with_grbl.py firmware/Kiosk\ Firmware\ \(C07-251021\).bin
+```
+
+**Output**:
+- Customization percentage
+- List of custom vs stock features
+- Comparison report
+
+---
+
+### 6. advanced_gpio_analysis.py
+**Purpose**: Analyze GPIO pin usage patterns
+
+**Features**:
+- Scans for GPIO number references
+- Counts occurrences per pin
+- Identifies likely pin assignments
+- Maps I2S, PWM, and control pins
+
+**Usage**:
+```bash
+python3 advanced_gpio_analysis.py <firmware.bin>
+
+# Example:
+python3 advanced_gpio_analysis.py firmware/Kiosk\ Firmware\ \(C07-251021\).bin
+```
+
+**Output**:
+- GPIO reference counts
+- Pin assignment candidates
+- I2S pin mapping
+
+---
+
+### 7. run_full_analysis.py
 **Purpose**: Run complete analysis workflow
 
 **Features**:
@@ -110,6 +184,30 @@ python3 run_full_analysis.py firmware/Kiosk\ Firmware\ \(C07-251021\).bin
 **Output**:
 - All analysis outputs from individual scripts
 - Complete analysis suite in one run
+
+---
+
+### 8. validate_firmware.py
+**Purpose**: Validate rebuilt firmware matches original
+
+**Features**:
+- Compares binary sizes
+- Checks partition structures
+- Validates key strings present
+- Reports differences
+
+**Usage**:
+```bash
+python3 validate_firmware.py <original.bin> <rebuilt.bin>
+
+# Example (after rebuilding):
+python3 validate_firmware.py firmware/original.bin .pio/build/genmitsu_kiosk/firmware.bin
+```
+
+**Output**:
+- Validation report
+- List of differences
+- Pass/fail status
 
 ---
 
