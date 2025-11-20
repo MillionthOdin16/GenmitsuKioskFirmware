@@ -181,8 +181,8 @@ laser:
   tool_num: 0                        # Tool number
   off_on_alarm: true                 # Turn off laser on alarm (CRITICAL!)
   speeds:
-    0=0.000%                         # S0 = laser OFF (SAFETY CRITICAL!)
-    1000=100.000%                    # S1000 = full power (2.5W)
+    0: 0.000%                         # S0 = laser OFF (SAFETY CRITICAL!)
+    1000: 100.000%                    # S1000 = full power (2.5W)
 
 # ============================================================================
 # CONTROL INPUTS - ? LIKELY (MUST VERIFY WITH HARDWARE)
