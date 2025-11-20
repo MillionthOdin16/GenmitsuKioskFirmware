@@ -10,7 +10,7 @@ Complete reverse engineering analysis and firmware rebuild capability for the Ge
 
 **Want to customize it?** → See [docs/CUSTOMIZATION_ANALYSIS.md](docs/CUSTOMIZATION_ANALYSIS.md)
 
-**Want to upgrade to FluidNC?** → See [docs/FLUIDNC_INSTALLATION.md](docs/FLUIDNC_INSTALLATION.md) (Complete Guide)
+**Want to upgrade to FluidNC?** → See [FLUIDNC_QUICK_START.md](FLUIDNC_QUICK_START.md) (Quick Guide) or [docs/FLUIDNC_INSTALLATION.md](docs/FLUIDNC_INSTALLATION.md) (Complete Guide)
 
 ## 📊 Project Status
 
